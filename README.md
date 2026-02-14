@@ -9,21 +9,17 @@ This tool offers two powerful conversion modes:
 ## 🏗️ Architecture
 
 ```mermaid
-graph TD
-    User[User Input (Java Code)] --> UI[Next.js Frontend]
-    UI --> Mode{Select Mode}
-    
-    Mode -- "Fast (Regex)" --> Engine[Rule-Based Engine (Client-Side)]
-    Mode -- "AI (Ollama)" --> API[Next.js API Route]
-    
-    API --> Ollama[Local Ollama Instance (CodeLlama)]
-    Ollama --> API
-    
-    Engine --> Merge[Merged Result]
-    API --> Merge
-    
-    Merge --> Display[Output to UI]
-    Merge --> FS[Save to Local Disk]
+flowchart LR
+    A[User Input<br/>Java Code] --> B[Next.js Frontend]
+    B --> C{Select Mode}
+    C -->|Fast Regex| D[Rule-Based Engine]
+    C -->|AI Ollama| E[API Route]
+    E --> F[Ollama<br/>CodeLlama/Mistral]
+    F --> E
+    D --> G[Output]
+    E --> G
+    G --> H[Display UI]
+    G --> I[Save to Disk]
 ```
 
 ## ✨ Features
@@ -35,7 +31,7 @@ graph TD
 ## 🛠️ Prerequisites
 1.  **Node.js**: v18+
 2.  **Ollama**: [Download Ollama](https://ollama.com)
-3.  **CodeLlama Model**: Run `ollama pull codellama`
+3.  **AI Models**: Run `ollama pull codellama` or `ollama pull mistral`
 
 ## 🚀 Getting Started
 
