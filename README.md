@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Selenium to Playwright Converter (AI-Powered)
 
-## Getting Started
+🚀 **A Next.js Web Application that converts Selenium Java code into Playwright TypeScript.**
 
-First, run the development server:
+This tool offers two powerful conversion modes:
+1.  ⚡ **Fast Mode (Heuristic/Regex)**: Instant conversion for standard Selenium patterns using rule-based logic.
+2.  🤖 **AI Mode (Ollama)**: Intelligent conversion using local LLMs (e.g., `codellama`) to handle complex logic and context.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🏗️ Architecture
+
+```mermaid
+graph TD
+    User[User Input (Java Code)] --> UI[Next.js Frontend]
+    UI --> Mode{Select Mode}
+    
+    Mode -- "Fast (Regex)" --> Engine[Rule-Based Engine (Client-Side)]
+    Mode -- "AI (Ollama)" --> API[Next.js API Route]
+    
+    API --> Ollama[Local Ollama Instance (CodeLlama)]
+    Ollama --> API
+    
+    Engine --> Merge[Merged Result]
+    API --> Merge
+    
+    Merge --> Display[Output to UI]
+    Merge --> FS[Save to Local Disk]
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Features
+- **Dual Mode**: Switch between speed and intelligence.
+- **Privacy First**: All data stays local (Localhost + Local LLM).
+- **Modern UI**: Built with React, TailwindCSS, and Lucide Icons.
+- **Direct File Saving**: Persist converted tests directly to your filesystem.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Prerequisites
+1.  **Node.js**: v18+
+2.  **Ollama**: [Download Ollama](https://ollama.com)
+3.  **CodeLlama Model**: Run `ollama pull codellama`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Getting Started
 
-## Learn More
+1.  **Clone the Repository**
+    ```bash
+    git clone https://github.com/Ravikumar191179/Conversion-of-Selenium-code-to-Playwright.git
+    cd web-app
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+2.  **Install Dependencies**
+    ```bash
+    npm install
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3.  **Run the App**
+    ```bash
+    npm run dev
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4.  **Open in Browser**
+    Visit [http://localhost:3000](http://localhost:3000)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Contributing
+Feel free to open issues or submit PRs to improve the heuristic engine or AI prompts!
